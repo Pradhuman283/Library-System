@@ -42,5 +42,11 @@ public class LibraryController {
         return ResponseEntity.ok(books);
 
     }
+    @GetMapping("/members")
+    public ResponseEntity<List<Member>> getAllMembers(){
+        List<Member> members = libraryService.getALlMembers();
+        return ResponseEntity.ok(members);
+
+    }
 
 }

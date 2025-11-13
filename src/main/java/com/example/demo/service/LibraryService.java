@@ -66,5 +66,6 @@ public class LibraryService {
     public List<Book> getAllabooks(){
         return bookRepository.findAll();
     }
+    public List<Member> getALlMembers(){return memberRepository.findAll();}
 
 }
