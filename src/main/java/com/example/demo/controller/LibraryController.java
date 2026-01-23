@@ -32,8 +32,8 @@ public class LibraryController {
 
     @PostMapping("/member")
     public ResponseEntity<Member> addMember(@RequestBody Member member){
-        Member savedBook = libraryService.addMember(member);
-        return ResponseEntity.ok(savedBook);
+        Member savedMember = libraryService.addMember(member);
+        return ResponseEntity.ok(savedMember);
     }
 
     @GetMapping("/books")

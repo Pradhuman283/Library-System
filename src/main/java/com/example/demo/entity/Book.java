@@ -4,6 +4,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Column;
 
+import java.util.LinkedList;
+import java.util.Queue;
+
 @Entity
 public class Book {
 
@@ -16,6 +19,7 @@ public class Book {
 
     @Column(name = "is_available")
     private boolean isAvailable = true;
+    private Queue<Integer> bookQ = new LinkedList<>();
 
     public Book() {}  // Required by JPA
 
@@ -42,4 +46,20 @@ public class Book {
 
     public boolean isAvailable() { return isAvailable; }
     public void setAvailable(boolean available) { isAvailable = available; }
+
+    public void addInQueue(int memberid){
+        bookQ.add(memberid);
+    }
+    public boolean queueContains(int memberid){
+        if(bookQ.contains(memberid)) return true;
+        return false;
+    }
+    public boolean reserveQueueIsEmpty(){
+        if(bookQ.isEmpty()) return true;
+        return false;
+    }
+
+    public int popNextFromReservedQueue(){
+        return bookQ.poll();
+    }
 }
