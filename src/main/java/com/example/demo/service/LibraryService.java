@@ -131,5 +131,14 @@ public class LibraryService {
         return memberRepository.findAll();
     }
 
+    public List<Book> getBooksWithMember(int member_id){
+        Member member = memberRepository.findById(member_id)
+                .orElseThrow(() ->
+                        new MemberNotFoundException("Member not found with "+ member_id)
 
+                );
+
+        return member.getBorrowedBooks();
+
+    }
 }

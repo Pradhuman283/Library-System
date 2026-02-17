@@ -31,8 +31,9 @@ public class GlobalExceptionHandler {
                 HttpStatus.NOT_FOUND
         );
     }
-    @ExceptionHandler(Exception.class)
-    public ResponseEntity<String> handleAlreadyRegistredException(AlreadyRegistredForBookException ex) {
+
+    @ExceptionHandler(AlreadyRegistredForBookException.class)
+    public ResponseEntity<String> handleAlreadyRegistredForBookIssuedException(BookAlreadyIssuedException ex) {
         return new ResponseEntity<>(
                 ex.getMessage(),
                 HttpStatus.NOT_FOUND
@@ -40,12 +41,14 @@ public class GlobalExceptionHandler {
     }
 
     @ExceptionHandler(Exception.class)
-    public ResponseEntity<String> handleAnyException(Exception ex){
+    public ResponseEntity<String> handleAException(AlreadyRegistredForBookException ex) {
         return new ResponseEntity<>(
                 ex.getMessage(),
                 HttpStatus.NOT_FOUND
         );
-        }
+    }
+
+
 
     }
 

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Grand Library</title>
+
+    <!-- Classic Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="app-container">
+        <!-- Sidebar Navigation (Bookshelf style) -->
+        <nav class="sidebar">
+            <div class="brand">
+                <div class="logo-icon">🏛️</div>
+                <span>Grand Library</span>
+            </div>
+
+            <ul class="nav-links">
+                <li class="active" data-tab="books">
+                    <span class="icon">📜</span> Collection
+                </li>
+                <li data-tab="members">
+                    <span class="icon">🧐</span> patrons
+                </li>
+                <li data-tab="circulation">
+                    <span class="icon">✒️</span> Desk
+                </li>
+            </ul>
+        </nav>
+
+        <!-- Main Content Area (Parchment style) -->
+        <main class="content-area">
+
+            <!-- BOOKS VIEW -->
+            <div id="books-view" class="view active-view">
+                <div class="header">
+                    <h1>The Collection</h1>
+                    <button id="add-book-btn" class="wood-btn primary">
+                        <span class="plus">+</span> New Tome
+                    </button>
+                </div>
+
+                <div id="book-grid" class="grid-container">
+                    <!-- Books injected here -->
+                </div>
+            </div>
+
+            <!-- MEMBERS VIEW -->
+            <div id="members-view" class="view">
+                <div class="header">
+                    <h1>Patron Registry</h1>
+                    <button id="add-member-btn" class="wood-btn primary">
+                        <span class="plus">+</span> New Patron
+                    </button>
+                </div>
+
+                <div id="member-list" class="list-container">
+                    <!-- Members injected here -->
+                </div>
+            </div>
+
+            <!-- CIRCULATION VIEW -->
+            <div id="circulation-view" class="view">
+                <div class="header">
+                    <h1>Circulation Desk</h1>
+                </div>
+
+                <div class="circulation-panel parchment-panel">
+                    <div class="tabs">
+                        <button class="tab-btn active" data-action="issue">Issue Tome</button>
+                        <button class="tab-btn" data-action="return">Return Tome</button>
+                    </div>
+
+                    <form id="circulation-form">
+                        <div class="input-group">
+                            <label>Patron ID</label>
+                            <input type="number" id="circ-member-id" placeholder="ID Number" required>
+                        </div>
+                        <div class="input-group">
+                            <label>Tome ISBN</label>
+                            <input type="text" id="circ-isbn" placeholder="ISBN Code" required>
+                        </div>
+                        <button type="submit" class="wood-btn primary full-width">Execute</button>
+                    </form>
+
+                    <div id="circ-message" class="status-message"></div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- 3D BOOK MODAL (Add Book) -->
+    <div id="book-modal-overlay" class="overlay hidden">
+        <div class="stage-container">
+            <div class="book-object" id="interactive-book">
+                <!-- Front Cover (Leather style) -->
+                <div class="cover front">
+                    <div class="cover-art">
+                        <div class="gold-emboss">New Tome</div>
+                        <div class="book-title-preview">Inscribe Details</div>
+                    </div>
+                </div>
+
+                <!-- The Pages (Form) -->
+                <div class="pages">
+                    <div class="page-content">
+                        <h3>Inscribe a New Tome</h3>
+                        <form id="add-book-form">
+                            <input type="text" id="isbn" placeholder="ISBN" required>
+                            <input type="text" id="title" placeholder="Title" required>
+                            <input type="text" id="author" placeholder="Author" required>
+                            <input type="text" id="genre" placeholder="Genre" required>
+
+                            <div class="form-footer">
+                                <button type="button" id="cancel-book-btn" class="wood-btn ghost">Seal Book</button>
+                                <button type="submit" class="wood-btn primary">archive</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Back Cover -->
+                <div class="cover back"></div>
+                <!-- Spine -->
+                <div class="spine"></div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MEMBER MODAL -->
+    <div id="member-modal-overlay" class="overlay hidden">
+        <div class="parchment-modal">
+            <h3>Register Patron</h3>
+            <form id="add-member-form">
+                <div class="input-group">
+                    <label>ID</label>
+                    <input type="number" id="member-id" required>
+                </div>
+                <div class="input-group">
+                    <label>Name</label>
+                    <input type="text" id="member-name" required>
+                </div>
+                <div class="input-group">
+                    <label>Email</label>
+                    <input type="email" id="member-email" required>
+                </div>
+                <div class="input-group">
+                    <label>Phone</label>
+                    <input type="tel" id="member-phone" required>
+                </div>
+
+                <div class="modal-actions">
+                    <button type="button" id="cancel-member-btn" class="wood-btn ghost">Cancel</button>
+                    <button type="submit" class="wood-btn primary">Register</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,442 @@
+/* GRAND LIBRARY THEME */
+:root {
+    /* Wooden Palette */
+    --wood-dark: #3e2723;
+    --wood-main: #5d4037;
+    --wood-light: #8d6e63;
+    --parchment: #fcf6e8;
+    --parchment-dark: #e8dcc4;
+    --gold: #d4af37;
+    --ink: #311b0e;
+    --leather-red: #58181A;
+
+    /* Transitions */
+    --ease-slower: cubic-bezier(0.25, 0.1, 0.25, 1.0);
+    --duration-slow: 0.8s;
+    --duration-md: 0.5s;
+}
+
+body {
+    font-family: 'Lato', sans-serif;
+    background-color: var(--wood-dark);
+    /* Wood pattern - simple gradient */
+    background-image: repeating-linear-gradient(45deg,
+            rgba(255, 255, 255, 0.03) 0px,
+            rgba(255, 255, 255, 0.03) 2px,
+            transparent 2px,
+            transparent 8px), linear-gradient(to bottom, #3e2723, #281a16);
+    color: var(--ink);
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    overflow: hidden;
+}
+
+.app-container {
+    display: flex;
+    height: 100vh;
+    box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.8);
+}
+
+/* SIDEBAR - The Bookshelf */
+.sidebar {
+    width: 260px;
+    background: var(--wood-main);
+    border-right: 4px solid #281a16;
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    box-shadow: inset -5px 0 10px rgba(0, 0, 0, 0.3);
+    color: var(--parchment);
+    z-index: 10;
+}
+
+.brand {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.8rem;
+    margin-bottom: 3rem;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    color: var(--gold);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+    padding-bottom: 1rem;
+}
+
+.nav-links {
+    list-style: none;
+    padding: 0;
+}
+
+.nav-links li {
+    padding: 15px 12px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    transition: all var(--duration-md) var(--ease-slower);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: rgba(255, 255, 255, 0.7);
+    border-left: 3px solid transparent;
+}
+
+.nav-links li:hover {
+    background: rgba(0, 0, 0, 0.2);
+    color: var(--gold);
+    padding-left: 18px;
+    /* Smooth slide */
+}
+
+.nav-links li.active {
+    background: rgba(0, 0, 0, 0.3);
+    color: var(--gold);
+    border-left: 3px solid var(--gold);
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.2);
+}
+
+/* MAIN CONTENT - The Writing Desk */
+.content-area {
+    flex: 1;
+    background-color: var(--parchment);
+    /* Paper Texture */
+    background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23noise)' opacity='0.08'/%3E%3C/svg%3E");
+    padding: 2rem 3rem;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: inset 0 0 40px rgba(62, 39, 35, 0.2);
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    border-bottom: 2px solid var(--wood-light);
+    padding-bottom: 1rem;
+}
+
+h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    color: var(--wood-dark);
+    margin: 0;
+}
+
+/* WOODEN BUTTONS */
+.wood-btn {
+    padding: 12px 24px;
+    border-radius: 4px;
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    border: 1px solid #3e2723;
+    transition: all var(--duration-md) var(--ease-slower);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.wood-btn.primary {
+    background: linear-gradient(to bottom, #5d4037, #3e2723);
+    color: var(--gold);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.wood-btn.primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+    background: linear-gradient(to bottom, #6d4c41, #4e342e);
+}
+
+.wood-btn.ghost {
+    background: transparent;
+    color: var(--wood-dark);
+    border-color: transparent;
+}
+
+.wood-btn.ghost:hover {
+    background: rgba(62, 39, 35, 0.1);
+}
+
+/* BOOKS GRID */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 30px;
+    perspective: 1000px;
+}
+
+.book-card {
+    background: var(--leather-red);
+    height: 300px;
+    border-radius: 4px 10px 10px 4px;
+    box-shadow:
+        10px 10px 20px rgba(0, 0, 0, 0.4),
+        /* Drop shadow */
+        inset 3px 0 5px rgba(0, 0, 0, 0.3);
+    /* Spine shadow */
+    position: relative;
+    cursor: pointer;
+    transition: transform var(--duration-md) var(--ease-slower);
+    transform-style: preserve-3d;
+    overflow: hidden;
+}
+
+.book-card::before {
+    /* Spine detail */
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 15px;
+    background: rgba(0, 0, 0, 0.2);
+    border-right: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.book-card:hover {
+    transform: rotateY(-15deg) scale(1.05);
+    /* 3D tilt */
+    z-index: 5;
+}
+
+.card-cover {
+    height: 60%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: linear-gradient(135deg, transparent 0%, rgba(0, 0, 0, 0.3) 100%);
+    color: var(--gold);
+    font-family: 'Playfair Display', serif;
+    font-size: 4rem;
+    border-bottom: 2px solid var(--gold);
+    position: relative;
+}
+
+.card-details {
+    padding: 15px 15px 15px 25px;
+    /* Avoiding spine */
+    color: var(--parchment);
+}
+
+.card-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.1rem;
+    margin: 0;
+    line-height: 1.2;
+}
+
+.card-subtitle {
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.6);
+    margin-top: 5px;
+    font-style: italic;
+}
+
+.status-badge {
+    padding: 2px 8px;
+    font-size: 0.7rem;
+    background: rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    border-radius: 4px;
+    color: white;
+}
+
+.status-available {
+    border-color: #66bb6a;
+    color: #66bb6a;
+}
+
+.status-out {
+    border-color: #ef5350;
+    color: #ef5350;
+}
+
+/* VIEW TRANSITIONS */
+.view {
+    display: none;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity var(--duration-slow) var(--ease-slower), transform var(--duration-slow) var(--ease-slower);
+}
+
+.view.active-view {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* POPUPS / FORMS */
+.overlay {
+    background: rgba(0, 0, 0, 0.7);
+    /* Darker library ambience */
+    backdrop-filter: blur(4px);
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity var(--duration-slow) var(--ease-slower);
+}
+
+.overlay:not(.hidden) {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+/* 3D BOOK MODAL - Wooden/Leather Theme */
+.stage-container {
+    perspective: 2000px;
+}
+
+.book-object {
+    width: 340px;
+    height: 480px;
+    position: relative;
+    transform-style: preserve-3d;
+    transform: rotateY(0deg);
+    /* Start closed facing user */
+    transition: transform 1.2s var(--ease-slower);
+    /* Slower, heavier feel */
+}
+
+/* Start position off-screen or angled */
+.overlay.hidden .book-object {
+    transform: translateY(100px) rotateX(20deg);
+}
+
+.book-object.is-open {
+    transform: translateX(120px) rotateY(-10deg);
+}
+
+.cover.front {
+    background: #3e2723;
+    /* Dark Leather */
+    /* Leather Texture */
+    background-image: url("data:image/svg+xml,...");
+    /* Simplified */
+    box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.8);
+    border: 2px solid #5d4037;
+    z-index: 10;
+    transform-origin: left;
+    transition: transform 1.2s cubic-bezier(0.4, 0.0, 0.2, 1);
+}
+
+.book-object.is-open .cover.front {
+    transform: rotateY(-175deg);
+}
+
+.gold-emboss {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: transparent;
+    background: linear-gradient(to bottom, #cfc09f 20%, #ffecb3 50%, #3a2c0f 80%);
+    -webkit-background-clip: text;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    border: 2px solid var(--gold);
+    padding: 10px 20px;
+    display: inline-block;
+}
+
+.pages {
+    background: #fdfbf7;
+    /* Cream Paper */
+    box-shadow: inset 5px 0 10px rgba(0, 0, 0, 0.1);
+    transform: translateZ(-2px);
+    border-radius: 2px 5px 5px 2px;
+}
+
+.pages form input {
+    background: transparent;
+    border: none;
+    border-bottom: 2px solid var(--wood-light);
+    font-family: 'Playfair Display', serif;
+    font-size: 1.2rem;
+    color: var(--ink);
+    padding: 10px 0;
+    margin-bottom: 20px;
+    width: 100%;
+    transition: border 0.5s;
+}
+
+.pages form input:focus {
+    outline: none;
+    border-bottom-color: var(--wood-dark);
+}
+
+.page-content h3 {
+    text-align: center;
+    font-family: 'Playfair Display', serif;
+    color: var(--wood-dark);
+    margin-bottom: 30px;
+    font-style: italic;
+}
+
+/* Spine */
+.spine {
+    background: #281a16;
+    width: 50px;
+    transform: rotateY(90deg) translateZ(-25px);
+}
+
+.cover.back {
+    background: #3e2723;
+    transform: translateZ(-50px);
+}
+
+/* PARCHMENT MODAL (Member) */
+.parchment-modal {
+    background: var(--parchment);
+    padding: 40px;
+    border: 1px solid var(--wood-light);
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.5);
+    width: 400px;
+    position: relative;
+    /* Paper edge effect could be added with clip-path */
+}
+
+.parchment-modal::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 4px double var(--wood-light);
+    pointer-events: none;
+    margin: 10px;
+}
+
+/* LIST ITEMS */
+.member-row {
+    padding: 15px;
+    border-bottom: 1px solid var(--wood-light);
+    font-family: 'Playfair Display', serif;
+    transition: background 0.3s;
+}
+
+.member-row:hover {
+    background: rgba(93, 64, 55, 0.1);
+}
+
+.member-avatar {
+    background: var(--wood-light);
+    color: var(--parchment);
+    font-family: 'Playfair Display', serif;
+}

@@ -35,6 +35,11 @@ public class LibraryController {
         Member savedMember = libraryService.addMember(member);
         return ResponseEntity.ok(savedMember);
     }
+    @GetMapping("/memberbooks")
+    public ResponseEntity<List<Book>> memberoptbooks(@RequestParam int member_id){
+        List<Book> books = libraryService.getBooksWithMember(member_id);
+        return ResponseEntity.ok(books);
+    }
 
     @GetMapping("/books")
     public ResponseEntity<List<Book>> getAllBooks() {
@@ -48,5 +53,10 @@ public class LibraryController {
         return ResponseEntity.ok(members);
 
     }
+    @GetMapping("/health")
+    public ResponseEntity<String> health() {
+        return ResponseEntity.ok("OK");
+    }
+
 
 }
